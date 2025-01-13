@@ -236,18 +236,18 @@ namespace esphome
                 }
                 break;
             }
-            case ESP_GATTC_SEARCH_CMPL_EVT:
-            {
-                this->node_state = espbt::ClientState::ESTABLISHED;
-
-                if (this->should_update_)
-                {
-                    this->should_update_ = false;
-                    this->get_data_();
-                }
-
-                break;
-            }
+            //case ESP_GATTC_SEARCH_CMPL_EVT:
+            //{
+            //    this->node_state = espbt::ClientState::ESTABLISHED;
+            //
+            //    if (this->should_update_)
+            //    {
+            //        this->should_update_ = false;
+            //        this->get_data_();
+            //    }
+            //
+            //    break;
+            //}
             default:
                 break;
           }
