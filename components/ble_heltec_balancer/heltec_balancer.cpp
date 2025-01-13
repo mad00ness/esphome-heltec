@@ -1,5 +1,7 @@
 #include "heltec_balancer.h"
+#include "esphome/components/ble_client/ble_client.h"
 #include "esphome/components/esp32_ble_tracker/esp32_ble_tracker.h"
+#include "esphome/core/hal.h"
 #include "esphome/core/application.h"
 #include "esphome/core/helpers.h"
 #include "esphome/core/log.h"

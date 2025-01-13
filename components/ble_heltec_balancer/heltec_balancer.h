@@ -2,7 +2,6 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/ble_client/ble_client.h"
-#include "esphome/components/esp32_ble_tracker/esp32_ble_tracker.h"
 #include "esphome/components/sensor/sensor.h"
 
 
@@ -18,9 +17,8 @@ namespace esphome
         class HeltecBalancerBle : public esphome::ble_client::BLEClientNode, public PollingComponent
         {
         public:
-            float get_setup_priority() const override;
+            float get_setup_priority() const override { return setup_priority::DATA; }
 
-            void setup() override;
             void loop() override;
             void update() override;
             void dump_config() override;
