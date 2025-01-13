@@ -20,6 +20,7 @@ namespace esphome
         public:
             float get_setup_priority() const override;
 
+            void setup() override;
             void loop() override;
             void update() override;
             void dump_config() override;

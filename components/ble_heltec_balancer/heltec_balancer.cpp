@@ -168,6 +168,11 @@ namespace esphome
           return (status == 0);
         }
 
+        void HeltecBalancerBle::setup()
+        {
+
+        }
+
         void HeltecBalancerBle::loop()
         {
 
