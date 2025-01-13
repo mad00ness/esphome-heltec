@@ -199,8 +199,7 @@ namespace esphome
                 {
                     this->status_set_warning();
                     //this->publish_state(NAN);
-                    ESP_LOGW(TAG, "No sensor characteristic found at service %s char %s", HELTEC_BALANCER_SERVICE_UUID,
-                                this->char_uuid_.to_string().c_str());
+                    ESP_LOGW(TAG, "No sensor characteristic found at service %s char %s", HELTEC_BALANCER_SERVICE_UUID, HELTEC_BALANCER_CHARACTERISTIC_UUID);
                     break;
                 }
 
@@ -281,7 +280,7 @@ namespace esphome
         {
             if (this->node_state != espbt::ClientState::ESTABLISHED)
             {
-                ESP_LOGW(TAG, "[%s] Cannot poll, not connected", this->get_name().c_str());
+                //ESP_LOGW(TAG, "[%s] Cannot poll, not connected", this->get_name().c_str());
                 this->should_update_ = true;
                 return;
             }
