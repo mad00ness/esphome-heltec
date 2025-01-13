@@ -175,7 +175,7 @@ namespace esphome
 
         void HeltecBalancerBle::dump_config()
         {
-            LOG_SENSOR("", "BLE Client Heltec Balancer", this);
+            ESP_LOGCONFIG(TAG, "HeltecBalancerBle");
             ESP_LOGCONFIG(TAG, "  MAC address        : %s", this->parent()->address_str().c_str());
             LOG_UPDATE_INTERVAL(this);
         }
