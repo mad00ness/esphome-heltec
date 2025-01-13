@@ -1,11 +1,7 @@
 import esphome.codegen as cg
 from esphome.components import ble_client
 import esphome.config_validation as cv
-from esphome.const import (
-    DEVICE_CLASS_SIGNAL_STRENGTH,
-    STATE_CLASS_MEASUREMENT,
-    UNIT_DECIBEL_MILLIWATT,
-)
+from esphome.const import CONF_ID
 
 DEPENDENCIES = ["ble_client"]
 
