@@ -287,7 +287,7 @@ namespace esphome
         {
             if (this->node_state != espbt::ClientState::ESTABLISHED)
             {
-                //ESP_LOGW(TAG, "[%s] Cannot poll, not connected", this->get_name().c_str());
+                ESP_LOGW(TAG, "[%s] Cannot poll, not connected", this->get_name().c_str());
                 this->should_update_ = true;
                 return;
             }
@@ -299,14 +299,14 @@ namespace esphome
         {
             if (this->node_state != espbt::ClientState::ESTABLISHED)
             {
-                //ESP_LOGW(TAG, "[%s] Cannot poll, not connected", this->get_name().c_str());
+                ESP_LOGW(TAG, "[%s] Cannot poll, not connected", this->get_name().c_str());
 
                 return;
             }
             
             if (this->handle == 0)
             {
-                //ESP_LOGW(TAG, "[%s] Cannot poll, no service or characteristic found", this->get_name().c_str());
+                ESP_LOGW(TAG, "[%s] Cannot poll, no service or characteristic found", this->get_name().c_str());
 
                 return;
             }
@@ -317,7 +317,7 @@ namespace esphome
             {
                 this->status_set_warning();
                 //this->publish_state(NAN);
-                //ESP_LOGW(TAG, "[%s] Error sending read request for sensor, status=%d", this->get_name().c_str(), status);
+                ESP_LOGW(TAG, "[%s] Error sending read request for sensor, status=%d", this->get_name().c_str(), status);
             }
             
             //ESP_LOGV(TAG, "Request device info from %s", this->parent()->address_str().c_str());
