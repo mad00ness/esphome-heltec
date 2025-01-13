@@ -99,7 +99,7 @@ namespace esphome
             return crc;
         }
 
-        const HeltecBalancerBle::StringRef& get_name() const
+        const StringRef& HeltecBalancerBle::get_name() const
         {
             static StringRef name_ = StringRef("Test");
             return name_;
