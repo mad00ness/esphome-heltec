@@ -98,7 +98,7 @@ namespace esphome
             return crc;
         }
 
-        bool send_command(uint8_t function, uint8_t command, uint8_t register_address, uint32_t value)
+        bool HeltecBalancerBle::send_command(uint8_t function, uint8_t command, uint8_t register_address, uint32_t value)
         {
           // Request device info:
           //

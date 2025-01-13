@@ -31,6 +31,7 @@ namespace esphome
             //void set_temperature_sensor(uint8_t temperature_num, sensor::Sensor *Temperature_Sensor);
 
         protected:
+            bool send_command(uint8_t function, uint8_t command, uint8_t register_address, uint32_t value);
             void get_data_();
             bool should_update_ = false;
 
