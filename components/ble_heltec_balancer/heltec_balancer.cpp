@@ -8,7 +8,7 @@
 
 namespace esphome
 {
-    namespace ble_client
+    namespace ble_heltec_balancer
     {
         static const char *const TAG = "ble_heltec_balancer";
 

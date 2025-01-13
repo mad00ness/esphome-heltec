@@ -3,6 +3,8 @@ from esphome.components import ble_client
 import esphome.config_validation as cv
 from esphome.const import CONF_ID
 
+DEPENDENCIES = ["ble_client"]
+
 MULTI_CONF = True
 
 CONF_BLE_HELTEC_BALANCER_ID = "ble_heltec_balancer_id"
