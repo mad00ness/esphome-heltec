@@ -187,7 +187,7 @@ namespace esphome
             case ESP_GATTC_CLOSE_EVT:
             {
                 this->status_set_warning();
-                this->publish_state(NAN);
+                //this->publish_state(NAN);
 
                 break;
             }
@@ -198,8 +198,8 @@ namespace esphome
                 if (chr == nullptr)
                 {
                     this->status_set_warning();
-                    this->publish_state(NAN);
-                    ESP_LOGW(TAG, "No sensor characteristic found at service %s char %s", this->service_uuid_.to_string().c_str(),
+                    //this->publish_state(NAN);
+                    ESP_LOGW(TAG, "No sensor characteristic found at service %s char %s", HELTEC_BALANCER_SERVICE_UUID,
                                 this->char_uuid_.to_string().c_str());
                     break;
                 }
