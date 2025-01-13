@@ -26,11 +26,14 @@ namespace esphome
             void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param) override;
             void gattc_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp_ble_gattc_cb_param_t *param) override;
 
+            uint16_t handle;
+
             //void set_cell_sensor(uint8_t cell_num, sensor::Sensor *Cell_Sensor);
             //void set_summary_cells_sensor(uint8_t summary_type, sensor::Sensor *Cell_Sensor);
             //void set_temperature_sensor(uint8_t temperature_num, sensor::Sensor *Temperature_Sensor);
 
         protected:
+
             bool send_command(uint8_t function, uint8_t command, uint8_t register_address, uint32_t value);
             void get_data_();
             bool should_update_ = false;

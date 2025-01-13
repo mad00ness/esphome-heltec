@@ -193,6 +193,52 @@ namespace esphome
             }
             case ESP_GATTC_SEARCH_CMPL_EVT:
             {
+                this->handle = 0;
+                auto *chr = this->parent()->get_characteristic(HELTEC_BALANCER_SERVICE_UUID, HELTEC_BALANCER_CHARACTERISTIC_UUID);
+                if (chr == nullptr)
+                {
+                    this->status_set_warning();
+                    this->publish_state(NAN);
+                    ESP_LOGW(TAG, "No sensor characteristic found at service %s char %s", this->service_uuid_.to_string().c_str(),
+                                this->char_uuid_.to_string().c_str());
+                    break;
+                }
+
+                this->handle = chr->handle;
+
+                //if (this->descr_uuid_.get_uuid().len > 0)
+                //{
+                //    auto *descr = chr->get_descriptor(this->descr_uuid_);
+                //
+                //    if (descr == nullptr)
+                //    {
+                //        this->status_set_warning();
+                //        this->publish_state(NAN);
+                //        ESP_LOGW(TAG, "No sensor descriptor found at service %s char %s descr %s",
+                //                this->service_uuid_.to_string().c_str(), this->char_uuid_.to_string().c_str(),
+                //                this->descr_uuid_.to_string().c_str());
+                //        break;
+                //    }
+                //
+                //    this->handle = descr->handle;
+                //}
+
+                if (true)
+                {
+                    auto status = esp_ble_gattc_register_for_notify(this->parent()->get_gattc_if(), this->parent()->get_remote_bda(), chr->handle);
+                    if (status)
+                    {
+                        ESP_LOGW(TAG, "esp_ble_gattc_register_for_notify failed, status=%d", status);
+                    }
+                }
+                else
+                {
+                    this->node_state = espbt::ClientState::ESTABLISHED;
+                }
+                break;
+            }
+            case ESP_GATTC_SEARCH_CMPL_EVT:
+            {
                 this->node_state = espbt::ClientState::ESTABLISHED;
 
                 if (this->should_update_)
