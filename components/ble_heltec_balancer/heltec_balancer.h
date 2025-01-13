@@ -35,6 +35,7 @@ namespace esphome
 
         protected:
 
+            const StringRef& get_name() const; { return this->name_; }
             bool send_command(uint8_t function, uint8_t command, uint8_t register_address = 0x00, uint32_t value = 0x00000000);
             void get_data_();
             bool should_update_ = false;

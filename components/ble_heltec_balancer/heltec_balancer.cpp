@@ -99,6 +99,12 @@ namespace esphome
             return crc;
         }
 
+        const HeltecBalancerBle::StringRef& get_name() const
+        {
+            static StringRef name_ = StringRef("Test");
+            return name_;
+        }
+
         bool HeltecBalancerBle::send_command(uint8_t function, uint8_t command, uint8_t register_address, uint32_t value)
         {
           // Request device info:
@@ -291,8 +297,31 @@ namespace esphome
 
         void HeltecBalancerBle::get_data_()
         {
-            ESP_LOGV(TAG, "Request device info from %s", this->parent()->address_str().c_str());
-            send_command(FUNCTION_READ, COMMAND_DEVICE_INFO);
+            if (this->node_state != espbt::ClientState::ESTABLISHED)
+            {
+                //ESP_LOGW(TAG, "[%s] Cannot poll, not connected", this->get_name().c_str());
+
+                return;
+            }
+            
+            if (this->handle == 0)
+            {
+                //ESP_LOGW(TAG, "[%s] Cannot poll, no service or characteristic found", this->get_name().c_str());
+
+                return;
+            }
+
+            auto status = esp_ble_gattc_read_char(this->parent()->get_gattc_if(), this->parent()->get_conn_id(), this->handle, ESP_GATT_AUTH_REQ_NONE);
+
+            if (status)
+            {
+                this->status_set_warning();
+                //this->publish_state(NAN);
+                //ESP_LOGW(TAG, "[%s] Error sending read request for sensor, status=%d", this->get_name().c_str(), status);
+            }
+            
+            //ESP_LOGV(TAG, "Request device info from %s", this->parent()->address_str().c_str());
+            //send_command(FUNCTION_READ, COMMAND_DEVICE_INFO);
             
             //ESP_LOGV(TAG, "requesting rssi from %s", this->parent()->address_str().c_str());
             //auto status = esp_ble_gap_read_rssi(this->parent()->get_remote_bda());
